@@ -1,0 +1,292 @@
+<!--
+  blog_release.html
+  ────────────────────────────────────────────────────────────────
+  True Aim · Image template · Blog Release archetype
+  Render target: HTMLCSStoImage at 1080×1080
+  Brand authority: brand.yaml + voice.yaml + vocabulary.yaml
+
+  Placeholders substituted by n8n Code node before POST to HCTI:
+    {{HEADLINE_LINE_1}}   Title-case statement, ends with period
+    {{HEADLINE_LINE_2}}   Title-case reinforcement (may be empty)
+    {{POST_ID}}           e.g. "BR-W15"
+    {{COMPOSITION_MOTIF}} one of the archetype's registered motifs
+    {{VERSION_TAG}}       e.g. "v1.0"
+    {{OWL_URL}}           URL to True Aim owl webp/png (transparent bg)
+    {{WORDMARK_URL}}      URL to True Aim wordmark webp/png (transparent bg)
+
+  Composition discipline: one motif per canvas, 70%+ negative space.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #0b0c15;
+    --bg-secondary: #12141d;
+    --text:         #ffffff;
+    --text-soft:    #ffffffb3;
+    --text-muted:   #ffffff99;
+    --accent:       #2563eb;
+    --accent-soft:  #2563eb4d;
+    --hairline:     #ffffff14;
+    --pad:          60px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; height: 1080px;
+    background: var(--bg);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .canvas {
+    position: relative;
+    width: 1080px; height: 1080px;
+    background: var(--bg);
+  }
+  .motif {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  
+  /* ─── Motif: rule_cluster ─── */
+
+    .motif.rule_cluster .rc-rule {
+      position: absolute; height: 0.5px; background: #ffffff2a;
+    }
+    .motif.rule_cluster .rc-rule-1 { top: calc(50% - 60px); left: 260px; width: 520px; }
+    .motif.rule_cluster .rc-rule-2 { top: calc(50% - 15px); left: 260px; width: 420px; }
+    .motif.rule_cluster .rc-rule-3 { top: calc(50% + 30px); left: 260px; width: 320px; }
+    .motif.rule_cluster .point {
+      position: absolute;
+      top: calc(50% + 26px); left: calc(260px + 320px - 4px);
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #2563eb;
+      box-shadow: 0 0 0 6px #2563eb1f;
+    }
+    
+  /* ─── Motif: document_corner ─── */
+
+    .motif.document_corner .corner-h {
+      position: absolute; top: calc(50% - 80px);
+      left: 380px; width: 320px;
+      height: 0.5px; background: #ffffff2a;
+    }
+    .motif.document_corner .corner-v {
+      position: absolute; top: calc(50% - 80px);
+      left: 700px; width: 0.5px; height: 160px;
+      background: #ffffff2a;
+    }
+    .motif.document_corner .point {
+      position: absolute;
+      top: calc(50% - 84px); left: 696px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #2563eb;
+      box-shadow: 0 0 0 6px #2563eb1f;
+    }
+    
+  /* ─── Motif: page_fragment ─── */
+
+    .motif.page_fragment .frag {
+      position: absolute; top: calc(50% - 80px); left: 400px;
+      width: 280px; height: 160px;
+      border: 0.5px solid #ffffff2a;
+      border-right: none;
+    }
+    .motif.page_fragment .frag-cut {
+      position: absolute;
+      top: calc(50% - 80px); left: 680px;
+      width: 0.5px; height: 160px;
+      background: #ffffff14;
+      background-image: repeating-linear-gradient(
+        to bottom, #ffffff2a 0 4px, transparent 4px 8px
+      );
+      background-size: 0.5px 8px;
+      background-repeat: repeat-y;
+    }
+    .motif.page_fragment .point {
+      position: absolute;
+      top: calc(50% - 4px); left: 676px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #2563eb;
+      box-shadow: 0 0 0 6px #2563eb1f;
+    }
+    
+  /* Hide all motif variants by default */
+  .motif .motif-variant { display: none; }
+  .motif.rule_cluster .motif-variant.rule_cluster { display: block; }
+  .motif.document_corner .motif-variant.document_corner { display: block; }
+  .motif.page_fragment .motif-variant.page_fragment { display: block; }
+
+
+  .bracket {
+    position: absolute; width: 14px; height: 14px;
+    border: 0.5px solid var(--accent-soft);
+    pointer-events: none;
+  }
+  .bracket.tr { top: 24px; right: 24px; border-bottom: none; border-left: none; }
+  .bracket.br { bottom: 24px; right: 24px; border-top: none; border-left: none; }
+
+  .meta-top {
+    position: absolute;
+    top: var(--pad); right: var(--pad);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .logo-lockup {
+    position: absolute;
+    top: var(--pad); left: var(--pad);
+    display: flex; align-items: center; gap: 16px;
+    z-index: 3;
+  }
+  .logo-lockup .owl { height: 64px; width: auto; }
+  .logo-lockup .wordmark { height: 30px; width: auto; }
+
+  .gradient {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 540px;
+    background: linear-gradient(180deg, #0b0c1500 0%, #0b0c15ee 100%);
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  .headline {
+    position: absolute;
+    left: var(--pad); right: var(--pad);
+    bottom: 110px;
+    z-index: 5;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.04;
+    letter-spacing: -1.6px;
+    color: var(--text);
+  }
+  .headline .line-1,
+  .headline .line-2 {
+    display: block;
+    white-space: nowrap;    /* critical: prevents wrap so we can measure */
+    overflow: hidden;
+  }
+  .headline .line-2 {
+    color: var(--text-soft);
+    margin-top: 4px;
+  }
+
+  .meta-bot {
+    position: absolute;
+    bottom: var(--pad); left: var(--pad); right: var(--pad);
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <div class="meta-top">TA · BR · {{POST_ID}}</div>
+
+  <div class="logo-lockup">
+    <img class="owl" src="{{OWL_URL}}" alt="">
+    <img class="wordmark" src="{{WORDMARK_URL}}" alt="True Aim">
+  </div>
+
+  <div class="motif {{COMPOSITION_MOTIF}}">
+    <!-- motif: rule_cluster (only renders when COMPOSITION_MOTIF=rule_cluster) -->
+    <div class="motif-variant rule_cluster">
+    
+    <div class="rc-rule rc-rule-1"></div>
+    <div class="rc-rule rc-rule-2"></div>
+    <div class="rc-rule rc-rule-3"></div>
+    <div class="point"></div>
+        </div>
+
+    <!-- motif: document_corner (only renders when COMPOSITION_MOTIF=document_corner) -->
+    <div class="motif-variant document_corner">
+    
+    <div class="corner-h"></div>
+    <div class="corner-v"></div>
+    <div class="point"></div>
+        </div>
+
+    <!-- motif: page_fragment (only renders when COMPOSITION_MOTIF=page_fragment) -->
+    <div class="motif-variant page_fragment">
+    
+    <div class="frag"></div>
+    <div class="frag-cut"></div>
+    <div class="point"></div>
+        </div>
+
+  </div>
+
+  <div class="bracket tr"></div>
+  <div class="bracket br"></div>
+
+  <div class="gradient"></div>
+
+  <div class="headline">
+    <span class="line-1">{{HEADLINE_LINE_1}}</span>
+    <span class="line-2">{{HEADLINE_LINE_2}}</span>
+  </div>
+
+  <div class="meta-bot">
+    <span>{{POST_ID}} · BLOG RELEASE</span>
+    <span>{{VERSION_TAG}}</span>
+  </div>
+
+</div>
+
+<script>
+  // Headline auto-fit: if a line is wider than the available width at 64px,
+  // scale font-size down proportionally until it fits. Keeps both lines
+  // sized consistently (whichever needs shrinking more wins).
+  (function autoFitHeadline() {
+    var headline = document.querySelector('.headline');
+    if (!headline) return;
+    var lines = headline.querySelectorAll('.line-1, .line-2');
+    var maxSize = 64;      // px — brand default
+    var minSize = 40;      // px — floor, below this shrink the canvas instead
+    var availableWidth = headline.clientWidth;  // container width minus padding
+    var fitSize = maxSize;
+
+    lines.forEach(function(line) {
+      if (!line.textContent.trim()) return;
+      // Temporarily remove overflow:hidden so we can measure true scrollWidth
+      var originalOverflow = line.style.overflow;
+      line.style.overflow = 'visible';
+      var needed = line.scrollWidth;
+      line.style.overflow = originalOverflow;
+      if (needed > availableWidth) {
+        var ratio = availableWidth / needed;
+        var candidate = Math.floor(maxSize * ratio);
+        if (candidate < fitSize) fitSize = candidate;
+      }
+    });
+
+    fitSize = Math.max(minSize, Math.min(maxSize, fitSize));
+    headline.style.fontSize = fitSize + 'px';
+    // Proportionally adjust letter-spacing to keep tracking tight
+    var spacing = -1.6 * (fitSize / maxSize);
+    headline.style.letterSpacing = spacing.toFixed(2) + 'px';
+  })();
+</script>
+
+</body>
+</html>

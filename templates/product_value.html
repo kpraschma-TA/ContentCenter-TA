@@ -1,0 +1,316 @@
+<!--
+  product_value.html
+  ────────────────────────────────────────────────────────────────
+  True Aim · Image template · Product Value + Humour archetype
+  Render target: HTMLCSStoImage at 1080×1080
+  Brand authority: brand.yaml + voice.yaml + vocabulary.yaml
+
+  Placeholders substituted by n8n Code node before POST to HCTI:
+    {{HEADLINE_LINE_1}}   Title-case statement, ends with period
+    {{HEADLINE_LINE_2}}   Title-case reinforcement (may be empty)
+    {{POST_ID}}           e.g. "PV-W15"
+    {{COMPOSITION_MOTIF}} one of the archetype's registered motifs
+    {{VERSION_TAG}}       e.g. "v1.0"
+    {{OWL_URL}}           URL to True Aim owl webp/png (transparent bg)
+    {{WORDMARK_URL}}      URL to True Aim wordmark webp/png (transparent bg)
+
+  Composition discipline: one motif per canvas, 70%+ negative space.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #0b0c15;
+    --bg-secondary: #12141d;
+    --text:         #ffffff;
+    --text-soft:    #ffffffb3;
+    --text-muted:   #ffffff99;
+    --accent:       #6366f1;
+    --accent-soft:  #6366f14d;
+    --hairline:     #ffffff14;
+    --pad:          60px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; height: 1080px;
+    background: var(--bg);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .canvas {
+    position: relative;
+    width: 1080px; height: 1080px;
+    background: var(--bg);
+  }
+  .motif {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  
+  /* ─── Motif: scattered_to_aligned ─── */
+
+    .motif.scattered_to_aligned .scatter-dot {
+      position: absolute; width: 4px; height: 4px;
+      border-radius: 50%; background: #ffffff33;
+    }
+    .motif.scattered_to_aligned .aligned-dot {
+      position: absolute; width: 4px; height: 4px;
+      border-radius: 50%; background: #ffffff66;
+    }
+    .motif.scattered_to_aligned .sd-1 { top: calc(50% - 60px); left: 280px; }
+    .motif.scattered_to_aligned .sd-2 { top: calc(50% + 20px); left: 310px; }
+    .motif.scattered_to_aligned .sd-3 { top: calc(50% - 10px); left: 360px; }
+    .motif.scattered_to_aligned .sd-4 { top: calc(50% + 50px); left: 380px; }
+    .motif.scattered_to_aligned .sd-5 { top: calc(50% - 40px); left: 420px; }
+    .motif.scattered_to_aligned .ad-1 { top: 50%; left: 620px; transform: translateY(-50%); }
+    .motif.scattered_to_aligned .ad-2 { top: 50%; left: 660px; transform: translateY(-50%); }
+    .motif.scattered_to_aligned .ad-3 { top: 50%; left: 700px; transform: translateY(-50%); }
+    .motif.scattered_to_aligned .ad-4 { top: 50%; left: 740px; transform: translateY(-50%); }
+    .motif.scattered_to_aligned .point {
+      position: absolute;
+      top: calc(50% - 4px); left: 776px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #6366f1;
+      box-shadow: 0 0 0 6px #6366f11f;
+    }
+    
+  /* ─── Motif: before_after_split ─── */
+
+    .motif.before_after_split .divider {
+      position: absolute; top: calc(50% - 100px);
+      left: calc(50% - 0.25px); width: 0.5px; height: 200px;
+      background: #ffffff2a;
+    }
+    .motif.before_after_split .chaos-dot {
+      position: absolute; width: 4px; height: 4px;
+      border-radius: 50%; background: #ffffff66;
+    }
+    .motif.before_after_split .cd-1 { top: calc(50% - 70px); left: 340px; }
+    .motif.before_after_split .cd-2 { top: calc(50% - 30px); left: 395px; }
+    .motif.before_after_split .cd-3 { top: calc(50% + 10px); left: 360px; }
+    .motif.before_after_split .cd-4 { top: calc(50% + 50px); left: 420px; }
+    .motif.before_after_split .cd-5 { top: calc(50% - 50px); left: 450px; }
+    .motif.before_after_split .cd-6 { top: calc(50% + 30px); left: 480px; }
+    .motif.before_after_split .cd-7 { top: calc(50% - 10px); left: 500px; }
+    .motif.before_after_split .cd-8 { top: calc(50% + 70px); left: 380px; }
+    .motif.before_after_split .point {
+      position: absolute;
+      top: calc(50% - 4px); left: calc(50% + 156px);
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #6366f1;
+      box-shadow: 0 0 0 6px #6366f11f;
+    }
+    
+  /* ─── Motif: convergence_arrow ─── */
+
+    .motif.convergence_arrow .conv-line {
+      position: absolute; height: 0.5px;
+      background: #ffffff14; transform-origin: right center;
+    }
+    .motif.convergence_arrow .cl-1 { top: calc(50% - 80px); left: 300px; width: 380px; transform: rotate(6deg); }
+    .motif.convergence_arrow .cl-2 { top: calc(50% - 40px); left: 300px; width: 380px; transform: rotate(3deg); }
+    .motif.convergence_arrow .cl-3 { top: calc(50% + 40px); left: 300px; width: 380px; transform: rotate(-3deg); }
+    .motif.convergence_arrow .cl-4 { top: calc(50% + 80px); left: 300px; width: 380px; transform: rotate(-6deg); }
+    .motif.convergence_arrow .point {
+      position: absolute;
+      top: calc(50% - 4px); left: 712px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #6366f1;
+      box-shadow: 0 0 0 6px #6366f11f;
+    }
+    
+  /* Hide all motif variants by default */
+  .motif .motif-variant { display: none; }
+  .motif.scattered_to_aligned .motif-variant.scattered_to_aligned { display: block; }
+  .motif.before_after_split .motif-variant.before_after_split { display: block; }
+  .motif.convergence_arrow .motif-variant.convergence_arrow { display: block; }
+
+
+  .bracket {
+    position: absolute; width: 14px; height: 14px;
+    border: 0.5px solid var(--accent-soft);
+    pointer-events: none;
+  }
+  .bracket.tr { top: 24px; right: 24px; border-bottom: none; border-left: none; }
+  .bracket.br { bottom: 24px; right: 24px; border-top: none; border-left: none; }
+
+  .meta-top {
+    position: absolute;
+    top: var(--pad); right: var(--pad);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .logo-lockup {
+    position: absolute;
+    top: var(--pad); left: var(--pad);
+    display: flex; align-items: center; gap: 16px;
+    z-index: 3;
+  }
+  .logo-lockup .owl { height: 64px; width: auto; }
+  .logo-lockup .wordmark { height: 30px; width: auto; }
+
+  .gradient {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 540px;
+    background: linear-gradient(180deg, #0b0c1500 0%, #0b0c15ee 100%);
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  .headline {
+    position: absolute;
+    left: var(--pad); right: var(--pad);
+    bottom: 110px;
+    z-index: 5;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.04;
+    letter-spacing: -1.6px;
+    color: var(--text);
+  }
+  .headline .line-1,
+  .headline .line-2 {
+    display: block;
+    white-space: nowrap;    /* critical: prevents wrap so we can measure */
+    overflow: hidden;
+  }
+  .headline .line-2 {
+    color: var(--text-soft);
+    margin-top: 4px;
+  }
+
+  .meta-bot {
+    position: absolute;
+    bottom: var(--pad); left: var(--pad); right: var(--pad);
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <div class="meta-top">TA · PV · {{POST_ID}}</div>
+
+  <div class="logo-lockup">
+    <img class="owl" src="{{OWL_URL}}" alt="">
+    <img class="wordmark" src="{{WORDMARK_URL}}" alt="True Aim">
+  </div>
+
+  <div class="motif {{COMPOSITION_MOTIF}}">
+    <!-- motif: scattered_to_aligned (only renders when COMPOSITION_MOTIF=scattered_to_aligned) -->
+    <div class="motif-variant scattered_to_aligned">
+    
+    <div class="scatter-dot sd-1"></div>
+    <div class="scatter-dot sd-2"></div>
+    <div class="scatter-dot sd-3"></div>
+    <div class="scatter-dot sd-4"></div>
+    <div class="scatter-dot sd-5"></div>
+    <div class="aligned-dot ad-1"></div>
+    <div class="aligned-dot ad-2"></div>
+    <div class="aligned-dot ad-3"></div>
+    <div class="aligned-dot ad-4"></div>
+    <div class="point"></div>
+        </div>
+
+    <!-- motif: before_after_split (only renders when COMPOSITION_MOTIF=before_after_split) -->
+    <div class="motif-variant before_after_split">
+    
+    <div class="divider"></div>
+    <div class="chaos-dot cd-1"></div>
+    <div class="chaos-dot cd-2"></div>
+    <div class="chaos-dot cd-3"></div>
+    <div class="chaos-dot cd-4"></div>
+    <div class="chaos-dot cd-5"></div>
+    <div class="chaos-dot cd-6"></div>
+    <div class="chaos-dot cd-7"></div>
+    <div class="chaos-dot cd-8"></div>
+    <div class="point"></div>
+        </div>
+
+    <!-- motif: convergence_arrow (only renders when COMPOSITION_MOTIF=convergence_arrow) -->
+    <div class="motif-variant convergence_arrow">
+    
+    <div class="conv-line cl-1"></div>
+    <div class="conv-line cl-2"></div>
+    <div class="conv-line cl-3"></div>
+    <div class="conv-line cl-4"></div>
+    <div class="point"></div>
+        </div>
+
+  </div>
+
+  <div class="bracket tr"></div>
+  <div class="bracket br"></div>
+
+  <div class="gradient"></div>
+
+  <div class="headline">
+    <span class="line-1">{{HEADLINE_LINE_1}}</span>
+    <span class="line-2">{{HEADLINE_LINE_2}}</span>
+  </div>
+
+  <div class="meta-bot">
+    <span>{{POST_ID}} · PRODUCT VALUE + HUMOUR</span>
+    <span>{{VERSION_TAG}}</span>
+  </div>
+
+</div>
+
+<script>
+  // Headline auto-fit: if a line is wider than the available width at 64px,
+  // scale font-size down proportionally until it fits. Keeps both lines
+  // sized consistently (whichever needs shrinking more wins).
+  (function autoFitHeadline() {
+    var headline = document.querySelector('.headline');
+    if (!headline) return;
+    var lines = headline.querySelectorAll('.line-1, .line-2');
+    var maxSize = 64;      // px — brand default
+    var minSize = 40;      // px — floor, below this shrink the canvas instead
+    var availableWidth = headline.clientWidth;  // container width minus padding
+    var fitSize = maxSize;
+
+    lines.forEach(function(line) {
+      if (!line.textContent.trim()) return;
+      // Temporarily remove overflow:hidden so we can measure true scrollWidth
+      var originalOverflow = line.style.overflow;
+      line.style.overflow = 'visible';
+      var needed = line.scrollWidth;
+      line.style.overflow = originalOverflow;
+      if (needed > availableWidth) {
+        var ratio = availableWidth / needed;
+        var candidate = Math.floor(maxSize * ratio);
+        if (candidate < fitSize) fitSize = candidate;
+      }
+    });
+
+    fitSize = Math.max(minSize, Math.min(maxSize, fitSize));
+    headline.style.fontSize = fitSize + 'px';
+    // Proportionally adjust letter-spacing to keep tracking tight
+    var spacing = -1.6 * (fitSize / maxSize);
+    headline.style.letterSpacing = spacing.toFixed(2) + 'px';
+  })();
+</script>
+
+</body>
+</html>

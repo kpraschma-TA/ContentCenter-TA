@@ -1,0 +1,319 @@
+<!--
+  security_compliance.html
+  ────────────────────────────────────────────────────────────────
+  True Aim · Image template · Security and Compliance archetype
+  Render target: HTMLCSStoImage at 1080×1080
+  Brand authority: brand.yaml + voice.yaml + vocabulary.yaml
+
+  Placeholders substituted by n8n Code node before POST to HCTI:
+    {{HEADLINE_LINE_1}}   Title-case statement, ends with period
+    {{HEADLINE_LINE_2}}   Title-case reinforcement (may be empty)
+    {{POST_ID}}           e.g. "SC-W15"
+    {{COMPOSITION_MOTIF}} one of the archetype's registered motifs
+    {{VERSION_TAG}}       e.g. "v1.0"
+    {{OWL_URL}}           URL to True Aim owl webp/png (transparent bg)
+    {{WORDMARK_URL}}      URL to True Aim wordmark webp/png (transparent bg)
+
+  Composition discipline: one motif per canvas, 70%+ negative space.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #0b0c15;
+    --bg-secondary: #12141d;
+    --text:         #ffffff;
+    --text-soft:    #ffffffb3;
+    --text-muted:   #ffffff99;
+    --accent:       #14b8a6;
+    --accent-soft:  #14b8a64d;
+    --hairline:     #ffffff14;
+    --pad:          60px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; height: 1080px;
+    background: var(--bg);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .canvas {
+    position: relative;
+    width: 1080px; height: 1080px;
+    background: var(--bg);
+  }
+  .motif {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  
+  /* ─── Motif: concentric_layers ─── */
+
+    .motif.concentric_layers .ring {
+      position: absolute; left: 50%; top: 50%;
+      border: 0.5px solid #ffffff14;
+      transform: translate(-50%, -50%);
+    }
+    .motif.concentric_layers .ring-1 { width: 260px; height: 260px; }
+    .motif.concentric_layers .ring-2 { width: 180px; height: 180px; border-color: #ffffff1f; }
+    .motif.concentric_layers .ring-3 { width: 100px; height: 100px; border-color: #14b8a64d; }
+    .motif.concentric_layers .point {
+      position: absolute;
+      top: calc(50% - 4px); left: calc(50% - 4px);
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #14b8a6;
+      box-shadow: 0 0 0 6px #14b8a61f;
+    }
+    
+  /* ─── Motif: nested_brackets ─── */
+
+    .motif.nested_brackets .nb {
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px; height: 20px;
+    }
+    .motif.nested_brackets .nb-outer {
+      width: 260px; height: 180px;
+      border-top: 0.5px solid #ffffff14;
+      border-left: 0.5px solid #ffffff14;
+      margin-left: -130px; margin-top: -90px;
+    }
+    .motif.nested_brackets .nb-outer::after {
+      content: ""; position: absolute;
+      right: 0; bottom: 0; width: 40px; height: 40px;
+      border-right: 0.5px solid #ffffff14;
+      border-bottom: 0.5px solid #ffffff14;
+    }
+    .motif.nested_brackets .nb-mid {
+      width: 180px; height: 120px;
+      border-top: 0.5px solid #ffffff1f;
+      border-left: 0.5px solid #ffffff1f;
+      margin-left: -90px; margin-top: -60px;
+    }
+    .motif.nested_brackets .nb-mid::after {
+      content: ""; position: absolute;
+      right: 0; bottom: 0; width: 30px; height: 30px;
+      border-right: 0.5px solid #ffffff1f;
+      border-bottom: 0.5px solid #ffffff1f;
+    }
+    .motif.nested_brackets .nb-inner {
+      width: 100px; height: 60px;
+      border-top: 0.5px solid #14b8a64d;
+      border-left: 0.5px solid #14b8a64d;
+      margin-left: -50px; margin-top: -30px;
+    }
+    .motif.nested_brackets .nb-inner::after {
+      content: ""; position: absolute;
+      right: 0; bottom: 0; width: 20px; height: 20px;
+      border-right: 0.5px solid #14b8a64d;
+      border-bottom: 0.5px solid #14b8a64d;
+    }
+    .motif.nested_brackets .point {
+      position: absolute;
+      top: calc(50% - 4px); left: calc(50% - 4px);
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #14b8a6;
+      box-shadow: 0 0 0 6px #14b8a61f;
+    }
+    
+  /* ─── Motif: sealed_perimeter ─── */
+
+    .motif.sealed_perimeter .perim {
+      position: absolute; left: 50%; top: 50%;
+      width: 260px; height: 260px;
+      transform: translate(-50%, -50%);
+      border: 0.5px solid #ffffff14;
+    }
+    .motif.sealed_perimeter .corner-dot {
+      position: absolute; width: 6px; height: 6px;
+      border-radius: 50%; background: #14b8a6;
+      box-shadow: 0 0 0 4px #14b8a61f;
+    }
+    .motif.sealed_perimeter .cd-tl { top: calc(50% - 133px); left: calc(50% - 133px); }
+    .motif.sealed_perimeter .cd-tr { top: calc(50% - 133px); left: calc(50% + 127px); }
+    .motif.sealed_perimeter .cd-bl { top: calc(50% + 127px); left: calc(50% - 133px); }
+    .motif.sealed_perimeter .cd-br { top: calc(50% + 127px); left: calc(50% + 127px); }
+    
+  /* Hide all motif variants by default */
+  .motif .motif-variant { display: none; }
+  .motif.concentric_layers .motif-variant.concentric_layers { display: block; }
+  .motif.nested_brackets .motif-variant.nested_brackets { display: block; }
+  .motif.sealed_perimeter .motif-variant.sealed_perimeter { display: block; }
+
+
+  .bracket {
+    position: absolute; width: 14px; height: 14px;
+    border: 0.5px solid var(--accent-soft);
+    pointer-events: none;
+  }
+  .bracket.tr { top: 24px; right: 24px; border-bottom: none; border-left: none; }
+  .bracket.br { bottom: 24px; right: 24px; border-top: none; border-left: none; }
+
+  .meta-top {
+    position: absolute;
+    top: var(--pad); right: var(--pad);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .logo-lockup {
+    position: absolute;
+    top: var(--pad); left: var(--pad);
+    display: flex; align-items: center; gap: 16px;
+    z-index: 3;
+  }
+  .logo-lockup .owl { height: 64px; width: auto; }
+  .logo-lockup .wordmark { height: 30px; width: auto; }
+
+  .gradient {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 540px;
+    background: linear-gradient(180deg, #0b0c1500 0%, #0b0c15ee 100%);
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  .headline {
+    position: absolute;
+    left: var(--pad); right: var(--pad);
+    bottom: 110px;
+    z-index: 5;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.04;
+    letter-spacing: -1.6px;
+    color: var(--text);
+  }
+  .headline .line-1,
+  .headline .line-2 {
+    display: block;
+    white-space: nowrap;    /* critical: prevents wrap so we can measure */
+    overflow: hidden;
+  }
+  .headline .line-2 {
+    color: var(--text-soft);
+    margin-top: 4px;
+  }
+
+  .meta-bot {
+    position: absolute;
+    bottom: var(--pad); left: var(--pad); right: var(--pad);
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <div class="meta-top">TA · SC · {{POST_ID}}</div>
+
+  <div class="logo-lockup">
+    <img class="owl" src="{{OWL_URL}}" alt="">
+    <img class="wordmark" src="{{WORDMARK_URL}}" alt="True Aim">
+  </div>
+
+  <div class="motif {{COMPOSITION_MOTIF}}">
+    <!-- motif: concentric_layers (only renders when COMPOSITION_MOTIF=concentric_layers) -->
+    <div class="motif-variant concentric_layers">
+    
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
+    <div class="point"></div>
+        </div>
+
+    <!-- motif: nested_brackets (only renders when COMPOSITION_MOTIF=nested_brackets) -->
+    <div class="motif-variant nested_brackets">
+    
+    <div class="nb nb-outer"></div>
+    <div class="nb nb-mid"></div>
+    <div class="nb nb-inner"></div>
+    <div class="point"></div>
+        </div>
+
+    <!-- motif: sealed_perimeter (only renders when COMPOSITION_MOTIF=sealed_perimeter) -->
+    <div class="motif-variant sealed_perimeter">
+    
+    <div class="perim"></div>
+    <div class="corner-dot cd-tl"></div>
+    <div class="corner-dot cd-tr"></div>
+    <div class="corner-dot cd-bl"></div>
+    <div class="corner-dot cd-br"></div>
+        </div>
+
+  </div>
+
+  <div class="bracket tr"></div>
+  <div class="bracket br"></div>
+
+  <div class="gradient"></div>
+
+  <div class="headline">
+    <span class="line-1">{{HEADLINE_LINE_1}}</span>
+    <span class="line-2">{{HEADLINE_LINE_2}}</span>
+  </div>
+
+  <div class="meta-bot">
+    <span>{{POST_ID}} · SECURITY AND COMPLIANCE</span>
+    <span>{{VERSION_TAG}}</span>
+  </div>
+
+</div>
+
+<script>
+  // Headline auto-fit: if a line is wider than the available width at 64px,
+  // scale font-size down proportionally until it fits. Keeps both lines
+  // sized consistently (whichever needs shrinking more wins).
+  (function autoFitHeadline() {
+    var headline = document.querySelector('.headline');
+    if (!headline) return;
+    var lines = headline.querySelectorAll('.line-1, .line-2');
+    var maxSize = 64;      // px — brand default
+    var minSize = 40;      // px — floor, below this shrink the canvas instead
+    var availableWidth = headline.clientWidth;  // container width minus padding
+    var fitSize = maxSize;
+
+    lines.forEach(function(line) {
+      if (!line.textContent.trim()) return;
+      // Temporarily remove overflow:hidden so we can measure true scrollWidth
+      var originalOverflow = line.style.overflow;
+      line.style.overflow = 'visible';
+      var needed = line.scrollWidth;
+      line.style.overflow = originalOverflow;
+      if (needed > availableWidth) {
+        var ratio = availableWidth / needed;
+        var candidate = Math.floor(maxSize * ratio);
+        if (candidate < fitSize) fitSize = candidate;
+      }
+    });
+
+    fitSize = Math.max(minSize, Math.min(maxSize, fitSize));
+    headline.style.fontSize = fitSize + 'px';
+    // Proportionally adjust letter-spacing to keep tracking tight
+    var spacing = -1.6 * (fitSize / maxSize);
+    headline.style.letterSpacing = spacing.toFixed(2) + 'px';
+  })();
+</script>
+
+</body>
+</html>
