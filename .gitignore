@@ -56,3 +56,20 @@ next-env.d.ts
 .claude/settings.local.json
 
 .vercel
+
+# Additional secret patterns
+credentials.json
+service-account*.json
+*.key
+*.p12
+
+# Python artefacts (if any local scripts)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Scratch / test data
+scratch/
+tmp/
+*.log
